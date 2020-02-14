@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Express has built in middleware for JSON. The server we build is run off express
+
 - [ ] Describe Middleware?
+
+An action that is carried out that changes an output based on a set of parameters. Takes in information and makes decisions of what to do with that information before it is passed on.
 
 - [ ] Describe a Resource?
 
+Anything that adds to your toolbox when trying to complete a task.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+a status code in the 200's
+
 - [ ] How can we partition our application into sub-applications?
+
+by creating routers, and in the server sending specific requests to be dealt with a specific router
 
 ## Minimum Viable Product
 
