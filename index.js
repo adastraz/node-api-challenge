@@ -14,7 +14,7 @@ const logger = (req, res, next) => {
 server.use(express.json())
 server.use(helmet())
 
-// server.use('/api/actions', actionRouter)
+server.use('/api/actions', actionRouter)
 // server.use('/api/projects', projectRouter)
 
 server.get('/', logger, (req, res) => {
