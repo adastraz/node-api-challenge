@@ -20,7 +20,7 @@ router.get('/:id', validateActionID, (req, res) => {
 });
 
 router.post('/', validateAction, (req, res) => {
-    console.log(req.body)
+    console.log(`router post ${req.body}`)
     Actions.insert(req.body)
         .then(action => {
             res.status(201).json(action)
@@ -54,7 +54,7 @@ router.put('/:id', validateActionID, validateAction, (req, res) => {
 });
 
 function validateAction(req, res, next) {
-    console.log(req.body.project_id, req.body.description, req.body.notes)
+    console.log(`middleware validate action ${req.body.project_id} ${req.body.description} ${req.body.notes}`)
     if(!req.body.project_id || !req.body.description || !req.body.notes){
         res.status(400).json({ message: 'Action does not have a description or an associated project ID' })
     }else{
