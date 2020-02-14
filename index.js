@@ -1,14 +1,28 @@
-/*
-play this: https://www.youtube.com/watch?v=d-diB65scQU
+const express = require('express')
+const helmet = require('helmet')
 
-Sing along:
+const actionRouter = require('./data/actionRouter.js')
+const projectRouter = require('./data/projectRouter.js')
 
-here's a little code I wrote, please read the README word for word, don't worry, you got this
-in every task there may be trouble, but if you worry you make it double, don't worry, you got this
-ain't got no sense of what is REST? just concentrate on learning Express, don't worry, you got this
-your file is getting way too big, bring a Router and make it thin, don't worry, be crafty
-there is no data on that route, just write some code, you'll sort it out… don't worry, just hack it…
-I need this code, but don't know where, perhaps should make some middleware, don't worry, just hack it
+const server = express()
 
-Go code!
-*/
+const logger = (req, res, next) => {
+    console.log(`${req.method} Requests to ${req.originalUrl}`)
+    next()
+}
+
+server.use(express.json())
+server.use(helmet())
+
+// server.use('/api/actions', actionRouter)
+// server.use('/api/projects', projectRouter)
+
+server.get('/', logger, (req, res) => {
+    const newThing = ({ thing: 'Cool', yep: 'yes'})
+    res.status(200).json(newThing)
+})
+
+port = 5000
+server.listen(port, () => {
+    console.log(`\n* ${Date(Date.now).toString()}Server listening on https://localhost:${port} *\n`)
+})
