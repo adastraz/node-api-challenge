@@ -44,14 +44,14 @@ router.delete('/:id', validateActionID, (req, res) => {
 
 router.put('/:id', validateActionID, validateAction, (req, res) => {
     Actions.update(req.params.id, req.body)
-      .then(action => {
-        res.status(200).json(action)
-      })
-      .catch(err => {
-        console.log(err)
-        res.status(500).json({ message: 'Action cannot be updated' })
-      })
-  });
+        .then(action => {
+            res.status(200).json(action)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ message: 'Action cannot be updated' })
+        })
+});
 
 function validateAction(req, res, next) {
     console.log(req.body.project_id, req.body.description, req.body.notes)
