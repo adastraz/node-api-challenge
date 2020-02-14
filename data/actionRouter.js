@@ -31,6 +31,17 @@ router.post('/', validateAction, (req, res) => {
         })
 });
 
+router.delete('/:id', validateActionID, (req, res) => {
+    Actions.remove(req.params.id)
+        .then(removed => {
+            res.status(200).json(removed)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ error: 'The action could not be removed'})
+        })
+});
+
 function validateAction(req, res, next) {
     console.log(req.body.project_id, req.body.description, req.body.notes)
     if(!req.body.project_id || !req.body.description || !req.body.notes){
