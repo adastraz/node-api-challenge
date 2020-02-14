@@ -1,5 +1,7 @@
 const express = require('express')
 const helmet = require('helmet')
+const cors = require('cors')
+require('dotenv').config()
 
 const actionRouter = require('./data/actionRouter.js')
 const projectRouter = require('./data/projectRouter.js')
@@ -12,6 +14,7 @@ const logger = (req, res, next) => {
 }
 
 server.use(express.json())
+server.use(cors())
 server.use(helmet())
 
 server.use('/api/actions', actionRouter)
@@ -22,7 +25,7 @@ server.get('/', logger, (req, res) => {
     res.status(200).json(newThing)
 })
 
-port = 5000
+port = process.env.PORT || 5000
 server.listen(port, () => {
     console.log(`\n* ${Date(Date.now).toString()}Server listening on https://localhost:${port} *\n`)
 })
